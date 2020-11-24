@@ -19,10 +19,10 @@ public class GameOfLifeBuilder implements ContextBuilder<Cell>{
 	public Context<Cell> build(Context<Cell> context) {
 
 		context.setId("GameOfLife");
+		
 		Parameters parameter = RunEnvironment.getInstance().getParameters();
 		int gridHeight = parameter.getInteger("gridHeight");
 		int gridWidth = parameter.getInteger("gridWidth");
-		
 		double frequency = parameter.getDouble("cellFrequency");
 		Random random = new Random(parameter.getInteger("randomSeed"));
 		

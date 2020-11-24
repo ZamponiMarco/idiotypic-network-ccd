@@ -16,18 +16,11 @@ public class AliveCell extends Cell{
 	@Override
 	public void step() {
 		MooreQuery<Cell> query = new MooreQuery<Cell>(grid,this);
-		int neighbours = 0;
-		for (Cell cell : query.query()) {
-			if(cell instanceof AliveCell) {
-				neighbours++;
-			}
-		}
+		int neighbours = getNeighboursNumber(query);
 		
 		if (neighbours != 2 && neighbours!=3) {
 			this.alive = false;
 		}
-		
-		
 	}
 
 	@Override

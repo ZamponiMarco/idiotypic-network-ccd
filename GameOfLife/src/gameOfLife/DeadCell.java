@@ -15,22 +15,15 @@ public class DeadCell extends Cell{
 	@Override
 	public void step() {
 		MooreQuery<Cell> query = new MooreQuery<Cell>(grid, this);	
-		int neighbours = 0;
-		for (Cell cell : query.query()) {
-			if( cell instanceof AliveCell) {
-				neighbours++;
-			}
-		}
+		int neighbours = getNeighboursNumber(query);
 		
 		if(neighbours == 3) {
 			alive = true;
 		}
-		
 	}
 
 	@Override
 	public void changeStatus() {
-
 		if(alive) {
 			GridPoint gpt = grid.getLocation(this);
 			Context<Cell> context = ContextUtils.getContext(this);

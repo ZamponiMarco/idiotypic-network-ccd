@@ -2,6 +2,7 @@ package idiotypicNetwork;
 
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.query.space.grid.MooreQuery;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.grid.Grid;
@@ -39,7 +40,7 @@ public class AliveAntibody extends Antibody{
 			context.add(dantibody);
 			grid.moveTo(dantibody, gpt.getX(), gpt.getY());
 		}
-		hValue = 0;
+		//hValue = 0;
 		
 	}
 

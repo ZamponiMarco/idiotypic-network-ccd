@@ -30,7 +30,7 @@ public class DeadAntibody extends Antibody{
 			context.add(aantibody);
 			grid.moveTo(aantibody, gpt.getX(), gpt.getY());
 		}
-		hValue = 0;
+		//hValue = 0;
 		
 	}
 

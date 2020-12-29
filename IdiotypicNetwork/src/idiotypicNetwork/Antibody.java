@@ -10,7 +10,7 @@ import repast.simphony.space.grid.Grid;
  * 
  * Ad ogni tick aggiornerà il suo stato.
  * */
-public abstract class Antibody {
+public abstract class Antibody implements Molecula{
 
 	public Grid<Antibody> grid;
 	
@@ -28,11 +28,11 @@ public abstract class Antibody {
 	}
 	
 	//The cell check its neighborhood to see determine its status
-	@ScheduledMethod(start = 1, interval=1, priority=2)
+	@ScheduledMethod(start = 1, interval=2, priority=2)
 	public abstract void step();
 	
 	//The cell can die or revive
-	@ScheduledMethod(start = 1, interval=1, priority=1)
+	@ScheduledMethod(start = 2, interval=2, priority=1)
 	public abstract void changeStatus();
 	
 }

@@ -19,11 +19,13 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Antibody> {
 	public Context build(Context<Antibody> context) {
 
 		
-		
 		context.setId("IdiotypicNetwork");
 		Parameters parameter = RunEnvironment.getInstance().getParameters();
 		int gridHeight = parameter.getInteger("gridHeight");
 		int gridWidth = parameter.getInteger("gridWidth");
+		
+		
+		
 		
 		double frequency = parameter.getDouble("cellFrequency");
 		Random random = new Random(parameter.getInteger("randomSeed"));
@@ -43,7 +45,7 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Antibody> {
 		
 		
 		
-		for (int i = 0; i < gridHeight; i++) {
+		for (int i = gridHeight/2; i < gridHeight; i++) {
 			for (int j = 0; j < gridWidth; j++) {
 			int type = random.nextInt(antibodyCount);
 			Antibody antibody = random.nextDouble() < frequency ? new AliveAntibody(grid, type, matrix[type]): new DeadAntibody(grid, type, matrix[type]);

@@ -1,24 +1,24 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.8.0">
-  <name>Idiotypic Network Builder Grid</name>
+  <name>Prova</name>
   <type>2D</type>
   <styles>
     <entry>
       <string>idiotypicNetwork.AliveAntibody</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+      <string>idiotypicNetwork.MoleculaStyle2D</string>
     </entry>
     <entry>
       <string>idiotypicNetwork.DeadAntibody</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+      <string>idiotypicNetwork.MoleculaStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
       <string>idiotypicNetwork.AliveAntibody</string>
-      <string>idiotypicNetwork.AliveAntibody.style_0.xml</string>
+      <null/>
     </entry>
     <entry>
       <string>idiotypicNetwork.DeadAntibody</string>
-      <string>idiotypicNetwork.DeadAntibody.style_0.xml</string>
+      <null/>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -31,7 +31,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1153508593</hashCode>
+    <hashCode>-2081662339</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>grid</layoutProjection>

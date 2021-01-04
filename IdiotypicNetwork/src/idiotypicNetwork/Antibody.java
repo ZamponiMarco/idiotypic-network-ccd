@@ -1,8 +1,12 @@
 package idiotypicNetwork;
 
+import java.util.stream.Stream;
+
+import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.grid.Grid;
+import repast.simphony.util.ContextUtils;
 
 /* 
  * Classe astratta che rappresenta un anticorpo. 
@@ -10,29 +14,58 @@ import repast.simphony.space.grid.Grid;
  * 
  * Ad ogni tick aggiornerà il suo stato.
  * */
-public abstract class Antibody implements Molecula{
+public class Antibody {
 
-	public Grid<Antibody> grid;
-	
-	
 	public boolean alive;
 	public int type;
 	public double hValue;
-	public double[] interactionArcs;
-	
-	public Antibody(Grid<Antibody> grid, int type, double[] interactionArcs) {
-		this.grid=grid;
+	public EquilibriumDataStructure eq;
+
+	public Antibody( int type, int maxEquilibriumStateLength) {
 		this.type = type;
 		this.hValue = 0;
-		this.interactionArcs = interactionArcs;
+		this.alive = true;
+		this.eq = new EquilibriumDataStructure(maxEquilibriumStateLength);
 	}
-	
-	//The cell check its neighborhood to see determine its status
-	@ScheduledMethod(start = 1, interval=2, priority=2)
-	public abstract void step();
-	
-	//The cell can die or revive
-	@ScheduledMethod(start = 2, interval=2, priority=1)
-	public abstract void changeStatus();
-	
+
+	// The cell check its neighborhood to see determine its status
+	@ScheduledMethod(start = 1, interval = 2, priority = 2)
+	public void step() {
+
+		ImmuneSystem immuneSystem = this.getImmuneSystem();
+
+		if (this.alive && !immuneSystem.globalEquilibrium) {
+		
+			this.getAntibodies().forEach(antibody -> antibody.hValue += immuneSystem.matrix[this.type][antibody.type]);
+			
+		}
+
+	}
+
+	// The cell can die or revive
+	@ScheduledMethod(start = 2, interval = 2, priority = 1)
+	public void changeStatus() {
+		if (!this.getImmuneSystem().globalEquilibrium) {
+			if (this.hValue < 0) {
+				this.alive = false;
+			} else {
+				this.alive = true;
+			}
+
+			eq.addState(this.alive ? "A" : "D");
+			this.hValue=0;
+		}
+	}
+
+	private ImmuneSystem getImmuneSystem() {
+		Context<ImmuneSystem> context = ContextUtils.getContext(this);
+		return context.getObjects(ImmuneSystem.class).get(0);
+	}
+
+	private Stream<Antibody> getAntibodies() {
+		Context<Antibody> context = ContextUtils.getContext(this);
+		return context.getObjectsAsStream(Antibody.class);
+
+	}
+
 }

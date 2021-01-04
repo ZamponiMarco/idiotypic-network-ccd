@@ -1,5 +1,7 @@
 package idiotypicNetwork;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import repast.simphony.context.Context;
@@ -11,58 +13,64 @@ import repast.simphony.parameter.Parameters;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridBuilderParameters;
 import repast.simphony.space.grid.RandomGridAdder;
-import repast.simphony.space.grid.SimpleGridAdder;
 import repast.simphony.space.grid.WrapAroundBorders;
 
-public class IdiotypicNetworkBuilder implements ContextBuilder<Antibody> {
+public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 
+	
+	
+	
 	@Override
-	public Context build(Context<Antibody> context) {
+	public Context build(Context<Object> context) {
 
-		
 		context.setId("IdiotypicNetwork");
 		Parameters parameter = RunEnvironment.getInstance().getParameters();
 		int gridHeight = parameter.getInteger("gridHeight");
 		int gridWidth = parameter.getInteger("gridWidth");
 		int antibodyTypeCount = parameter.getInteger("antibodyTypeCount");
-		
-		
-		
-		//double frequency = parameter.getDouble("cellFrequency");
+		int antibodyEquilibriumMaxLength = parameter.getInteger("antibodyEquilibriumMaxLength");
+
+
 		Random random = new Random(parameter.getInteger("randomSeed"));
-		
+
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
-		Grid<Antibody> grid = gridFactory.createGrid("grid", context, new GridBuilderParameters<Antibody>(new WrapAroundBorders(),new RandomGridAdder<Antibody>(), true, gridHeight, gridWidth));
-		
-		double[][] matrix = new double[antibodyTypeCount][antibodyTypeCount];
-		for(int i = 0; i<antibodyTypeCount; i++) {
-			for(int j = 0; j< i ; j++) {	
-				double initialValue = random.nextDouble() * 2 -1; //value between -1 , 1 
-				matrix[i][j] = initialValue;
-			    matrix[j][i] = initialValue;
-			    
-			}
-		}
+		Grid<Object> grid = gridFactory.createGrid("grid", context, new GridBuilderParameters<Object>(
+				new WrapAroundBorders(), new RandomGridAdder<Object>(), true, gridHeight, gridWidth));
 
 		
-		for (int i = 0; i < antibodyTypeCount; i++ ) {
-			context.add(new AliveAntibody(grid, i, matrix[i]));
+		Grid<Object> gridGlobal = gridFactory.createGrid("gridGlobal", context, new GridBuilderParameters<Object>(
+				new WrapAroundBorders(), new RandomGridAdder<Object>(), true, gridHeight, gridWidth));
+		
+		
+		
+		double[][] matrix = new double[antibodyTypeCount][antibodyTypeCount];
+		for (int i = 0; i < antibodyTypeCount; i++) {
+			for (int j = 0; j < i; j++) {
+				double initialValue = random.nextDouble() * 2 - 1; // value between -1 , 1
+				matrix[i][j] = initialValue;
+				matrix[j][i] = initialValue;
+
+			}
 		}
-//		
-//		for (int i = gridHeight/2; i < gridHeight; i++) {
-//			for (int j = 0; j < gridWidth; j++) {
-//			int type = random.nextInt(antibodyCount);
-//			Antibody antibody = random.nextDouble() < frequency ? new AliveAntibody(grid, type, matrix[type]): new DeadAntibody(grid, type, matrix[type]);
-//			context.add(antibody);
-//			grid.moveTo(antibody, i, j);
-//			}
-//		} 
+		
+		
+		ImmuneSystem immuneSystem = new ImmuneSystem(matrix, antibodyEquilibriumMaxLength);
+		context.add(immuneSystem);
+		
+		ExternalAgent externalAgent = new ExternalAgent(gridGlobal, antibodyTypeCount);
+		context.add(externalAgent);
+		
+		
+
+
+		for (int i = 0; i < antibodyTypeCount; i++) {
+			Antibody antibody = new Antibody(i, antibodyEquilibriumMaxLength);
+			context.add(antibody);
+			ColorTypeMapping.getInstance().getColor(antibody.type);
+		}
+
 		return context;
-		
-		
-		
-		
-		
+
 	}
 
 }

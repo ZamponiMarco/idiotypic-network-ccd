@@ -1,24 +1,24 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.8.0">
-  <name>Prova</name>
+  <name>Alto Livello</name>
   <type>2D</type>
   <styles>
     <entry>
-      <string>idiotypicNetwork.AliveAntibody</string>
+      <string>idiotypicNetwork.Antigen</string>
       <string>idiotypicNetwork.MoleculaStyle2D</string>
     </entry>
     <entry>
-      <string>idiotypicNetwork.DeadAntibody</string>
-      <string>idiotypicNetwork.MoleculaStyle2D</string>
+      <string>idiotypicNetwork.ImmuneSystem</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
-      <string>idiotypicNetwork.AliveAntibody</string>
+      <string>idiotypicNetwork.Antigen</string>
       <null/>
     </entry>
     <entry>
-      <string>idiotypicNetwork.DeadAntibody</string>
-      <null/>
+      <string>idiotypicNetwork.ImmuneSystem</string>
+      <string>idiotypicNetwork.ImmuneSystem.style_1.xml</string>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -31,24 +31,24 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-2081662339</hashCode>
+    <hashCode>530103295</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
-  <layoutProjection>grid</layoutProjection>
+  <layoutProjection>gridGlobal</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>idiotypicNetwork.AliveAntibody</string>
+      <string>idiotypicNetwork.Antigen</string>
       <int>1</int>
     </entry>
     <entry>
-      <string>idiotypicNetwork.DeadAntibody</string>
+      <string>idiotypicNetwork.ImmuneSystem</string>
       <int>0</int>
     </entry>
   </layerOrder>
   <projections>
     <repast.simphony.scenario.data.ProjectionData>
-      <id>grid</id>
+      <id>gridGlobal</id>
       <attributes/>
       <type>grid</type>
     </repast.simphony.scenario.data.ProjectionData>
@@ -58,7 +58,7 @@
   </visualizationProperties>
   <projectionDescriptors>
     <entry>
-      <string>grid</string>
+      <string>gridGlobal</string>
       <repast.simphony.visualization.grid.GridProjectionDescriptor>
         <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
         <props>

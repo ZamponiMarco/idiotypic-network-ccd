@@ -1,7 +1,6 @@
 package idiotypicNetwork;
 
 
-import java.util.Random;
 import java.util.stream.IntStream;
 
 import repast.simphony.context.Context;
@@ -18,9 +17,6 @@ import repast.simphony.space.grid.WrapAroundBorders;
 
 public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 
-	
-	
-	
 	@Override
 	public Context build(Context<Object> context) {
 
@@ -29,6 +25,7 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 		int gridHeight = parameter.getInteger("gridHeight");
 		int gridWidth = parameter.getInteger("gridWidth");
 		int antibodyTypeCount = parameter.getInteger("antibodyTypeCount");
+		int antibodyMaxAmountPerType = parameter.getInteger("antibodyMaxAmountPerType");
 		int antibodyEquilibriumMaxLength = parameter.getInteger("antibodyEquilibriumMaxLength");
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
 		
@@ -47,9 +44,12 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 		context.add(externalAgent);
 		
 		IntStream.range(0, antibodyTypeCount).forEach(i -> {
-			Antibody antibody = new Antibody(i, antibodyEquilibriumMaxLength);
-			context.add(antibody);
-			ColorTypeMapping.getInstance().getColor(antibody.type);
+			int typeAmount = RandomHelper.nextIntFromTo(1, antibodyMaxAmountPerType);
+			IntStream.range(0, typeAmount).forEach(n -> {
+				Antibody antibody = new Antibody(i, antibodyEquilibriumMaxLength);
+				context.add(antibody);
+				ColorTypeMapping.getInstance().getColor(antibody.type);
+			});
 		});
 
 		return context;

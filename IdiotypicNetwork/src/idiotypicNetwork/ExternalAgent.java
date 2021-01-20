@@ -1,7 +1,5 @@
 package idiotypicNetwork;
 
-import java.util.Random;
-
 import repast.simphony.context.Context;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;

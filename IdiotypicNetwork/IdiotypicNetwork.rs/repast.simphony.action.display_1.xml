@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor simphonyVersion="2.8.0">
-  <name>New Display</name>
+  <name>Basso Livello</name>
   <type>2D</type>
   <styles>
     <entry>
@@ -23,7 +23,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1876418217</hashCode>
+    <hashCode>-1615713153</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>grid</layoutProjection>

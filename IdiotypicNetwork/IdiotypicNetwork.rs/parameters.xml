@@ -7,9 +7,6 @@
 	<parameter name="gridHeight" displayName="Grid Height"
 		type="int" defaultValue="50" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
-	<parameter name="cellFrequency" displayName="Cell Frequency"
-		type="double" defaultValue="0.2" isReadOnly="false"
-		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
 	<parameter name="gridWidth" displayName="Grid Width"
 		type="int" defaultValue="50" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />

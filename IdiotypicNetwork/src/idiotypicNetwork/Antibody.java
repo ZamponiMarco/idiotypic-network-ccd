@@ -3,8 +3,10 @@ package idiotypicNetwork;
 import java.util.stream.Stream;
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.controller.Controller;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.util.ContextUtils;
+import repast.simphony.visualization.editor.SpaceAddHandler;
 
 /* 
  * Classe astratta che rappresenta un anticorpo. 

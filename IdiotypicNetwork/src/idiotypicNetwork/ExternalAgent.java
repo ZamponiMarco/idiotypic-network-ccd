@@ -1,11 +1,13 @@
 package idiotypicNetwork;
 
+import java.util.Random;
+
 import repast.simphony.context.Context;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;
+import repast.simphony.random.RandomHelper;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.util.ContextUtils;
-import java.util.Random;
 
 public class ExternalAgent {
 
@@ -25,23 +27,15 @@ public class ExternalAgent {
 
 		if (context.getObjectsAsStream(Antigen.class).count() == 0) {
 
-			Random r = new Random();
-			if (r.nextDouble() < this.newAntigenPercentage) {
-
+			if (RandomHelper.nextDoubleFromTo(0, 1) < this.newAntigenPercentage) {	
 				int antigenType = antigenTypeCount;
 				context.add(new Antigen(antigenType, this.grid));
 				antigenTypeCount++;
 			} else {
-				context.add(new Antigen(r.nextInt(antigenTypeCount),this.grid));
+				context.add(new Antigen(RandomHelper.nextIntFromTo(0, antigenTypeCount - 1),this.grid));
 			}
 
 		}
-
-		// 1 - controlla il tipo
-		// se gia c'è lo elimina e lo stato rimane uguale
-		// altrimenti aggiunge la nuova riga a tutti gli anticorpi spara un nuovo
-		// anticoorpo all'interno della grid e mette il proprio stato di global
-		// equilibrium false
 
 	}
 

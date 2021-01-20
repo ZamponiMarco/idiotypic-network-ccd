@@ -1,20 +1,14 @@
 package idiotypicNetwork;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import javax.help.plaf.basic.BasicFavoritesNavigatorUI.RemoveAction;
-
-import com.l2fprod.common.beans.editor.BooleanAsCheckBoxPropertyEditor;
-
-import bsh.This;
+import cern.jet.random.Uniform;
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;
-import repast.simphony.relogo.ide.dynamics.NetLogoSystemDynamicsParser.intg_return;
+import repast.simphony.random.RandomHelper;
 import repast.simphony.util.ContextUtils;
 
 public class ImmuneSystem {
@@ -24,9 +18,21 @@ public class ImmuneSystem {
 	public boolean isInfected;
 	public int maxEquilibriumStateLength;
 
-	public ImmuneSystem(double[][] matrix, int maxEquilibriumStateLength) {
+	public ImmuneSystem(int antibodyTypeCount, int maxEquilibriumStateLength) {
 		this.globalEquilibrium = false;
-		this.matrix = matrix;
+		
+		Uniform uniform = RandomHelper.createUniform(-1, 1);
+		
+		this.matrix = new double[antibodyTypeCount][antibodyTypeCount];
+		for (int i = 0; i < antibodyTypeCount; i++) {
+			for (int j = 0; j < i; j++) {
+				double initialValue = uniform.nextDouble(); // value between -1 , 1
+				matrix[i][j] = initialValue;
+				matrix[j][i] = initialValue;
+
+			}
+		}
+		
 		this.isInfected = false;
 		this.maxEquilibriumStateLength = maxEquilibriumStateLength;
 	}
@@ -89,14 +95,14 @@ public class ImmuneSystem {
 				newMatrix[i][j] = matrix[i][j];
 			}
 		}
-
+		
 		for (int i = 0; i < newMatrix.length; i++) {
 			double randomValue = random.nextDouble() * 2 - 1;
 			newMatrix[this.matrix.length][i] = randomValue;
 			newMatrix[i][this.matrix.length] = randomValue;
 		}
-
 		newMatrix[matrix.length][matrix.length] = 0;
+		
 		this.matrix = newMatrix;
 	}
 

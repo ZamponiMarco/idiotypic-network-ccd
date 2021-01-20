@@ -17,6 +17,10 @@
 		displayName="Antibody Type Count" type="int" defaultValue="10"
 		isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="antibodyMaxAmountPerType"
+		displayName="Antibody Max Amount Per Type" type="int" defaultValue="5"
+		isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="antibodyEquilibriumMaxLength"
 		displayName="Antibody Equilibrium Max Length" type="int"
 		defaultValue="5" isReadOnly="false"

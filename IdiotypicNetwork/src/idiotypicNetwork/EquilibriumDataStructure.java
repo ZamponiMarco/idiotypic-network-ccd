@@ -1,41 +1,25 @@
 package idiotypicNetwork;
 
-import java.security.PublicKey;
-import java.util.ArrayList;
-import java.util.List;
-
-import bsh.This;
-import repast.simphony.relogo.ide.dynamics.NetLogoSystemDynamicsParser.intg_return;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 public class EquilibriumDataStructure {
-
+	
 	String lastStateString;
 	int maxLength;
-	List<String> checkerList;
 	boolean equilibrium;
+	
+	private Predicate<String> equilibriumPredicate;
 
 	public EquilibriumDataStructure(int maxLength) {
 
 		this.lastStateString = "";
 		this.maxLength = maxLength;
 
-		String s1 = "";
-		String s2 = "";
-		String s3 = "";
-
-		for (int i = 0; i < maxLength; i++) {
-			s1 = s1.concat("A");
-			s2 = s2.concat("D");
-			s3 = s3.concat("AD");
-		}
-
-		this.checkerList = new ArrayList<String>();
-		this.checkerList.add(s1);
-		this.checkerList.add(s2);
-		this.checkerList.add(s3.substring(0, maxLength));
-		this.checkerList.add(s3.substring(1, maxLength + 1));
-
 		this.equilibrium = false;
+
+		this.equilibriumPredicate = Pattern.compile(String.format("A{%d}|D{%d}|(AD){%d}%s|(DA){%d}%s", maxLength, maxLength, 
+				maxLength / 2, maxLength % 2 == 0 ? "" : "A", maxLength / 2, maxLength % 2 == 0 ? "" : "D")).asMatchPredicate();
 	}
 
 	public void addState(String state) {
@@ -47,13 +31,12 @@ public class EquilibriumDataStructure {
 	}
 
 	public boolean isEquilibrium() {
-		this.equilibrium = this.checkerList.stream().anyMatch(string -> string.equals(this.lastStateString));
+		this.equilibrium = equilibriumPredicate.test(lastStateString);
 		return this.equilibrium;
-				
 
 	}
-	
+
 	public void reset() {
-		this.lastStateString="";
+		this.lastStateString = "";
 	}
 }

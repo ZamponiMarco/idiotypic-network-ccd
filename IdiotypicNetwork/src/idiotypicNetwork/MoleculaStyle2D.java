@@ -1,16 +1,8 @@
 package idiotypicNetwork;
 
 import java.awt.Color;
-import java.awt.Shape;
 
-import org.jmock.expectation.ReturnObjectBag;
-
-import com.bulletphysics.collision.dispatch.CollisionObjectType;
-
-import jogamp.graph.font.UbuntuFontLoader;
 import repast.simphony.visualizationOGL2D.DefaultStyleOGL2D;
-import saf.v3d.ShapeFactory2D;
-import saf.v3d.scene.VShape;
 import saf.v3d.scene.VSpatial;
 
 public class MoleculaStyle2D extends DefaultStyleOGL2D {

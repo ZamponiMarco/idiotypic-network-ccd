@@ -10,6 +10,10 @@
 	<parameter name="gridWidth" displayName="Grid Width"
 		type="int" defaultValue="50" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="newAntigenPercentage"
+		displayName="New Antigen Percentage" type="double" defaultValue="0.5"
+		isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter" />
 	<parameter name="antibodyTypeCount"
 		displayName="Antibody Type Count" type="int" defaultValue="10"
 		isReadOnly="false"
@@ -22,8 +26,6 @@
 		displayName="Antibody Equilibrium Max Length" type="int"
 		defaultValue="5" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
-
-
 
 
 </parameters>

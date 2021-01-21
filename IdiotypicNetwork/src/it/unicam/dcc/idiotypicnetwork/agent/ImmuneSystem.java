@@ -32,8 +32,8 @@ public class ImmuneSystem {
 		for (int i = 0; i < antibodyTypeCount; i++) {
 			for (int j = 0; j < i; j++) {
 				double initialValue = uniform.nextDouble(); // value between -1 , 1
-				getMatrix()[i][j] = initialValue;
-				getMatrix()[j][i] = initialValue;
+				matrix[i][j] = initialValue;
+				matrix[j][i] = initialValue;
 
 			}
 		}
@@ -50,7 +50,7 @@ public class ImmuneSystem {
 		Context<Antibody> context = ContextUtils.getContext(this);
 		this.currentInfectionTime++;
 		this.globalEquilibrium = context.getObjectsAsStream(Antibody.class).allMatch(agent -> agent.getEq().updateAndGetEquilibrium());
-		if (this.isGlobalEquilibrium() && this.isInfected) {
+		if (this.globalEquilibrium && this.isInfected) {
 			this.removeAntigen();
 			this.infectionTimes.add(currentInfectionTime);
 			this.isInfected = false;
@@ -66,7 +66,7 @@ public class ImmuneSystem {
 		this.currentInfectionTime = 0;
 
 		Antigen antigen = this.getAntigen();
-		if (antigen != null && antigen.getType() < this.getMatrix().length) {
+		if (antigen != null && antigen.getType() < this.matrix.length) {
 			Context<Antibody> context = ContextUtils.getContext(this);
 
 			this.addNewAntibodyToMatrix();
@@ -97,22 +97,22 @@ public class ImmuneSystem {
 	}
 
 	private void addNewAntibodyToMatrix() {
-		double[][] newMatrix = new double[this.getMatrix().length + 1][this.getMatrix().length + 1];
+		double[][] newMatrix = new double[this.matrix.length + 1][this.matrix.length + 1];
 
 		Random random = new Random();
 
-		for (int i = 0; i < this.getMatrix().length; i++) {
-			for (int j = 0; j < this.getMatrix().length; j++) {
-				newMatrix[i][j] = getMatrix()[i][j];
+		for (int i = 0; i < this.matrix.length; i++) {
+			for (int j = 0; j < this.matrix.length; j++) {
+				newMatrix[i][j] = matrix[i][j];
 			}
 		}
 		
 		for (int i = 0; i < newMatrix.length; i++) {
 			double randomValue = random.nextDouble() * 2 - 1;
-			newMatrix[this.getMatrix().length][i] = randomValue;
-			newMatrix[i][this.getMatrix().length] = randomValue;
+			newMatrix[this.matrix.length][i] = randomValue;
+			newMatrix[i][this.matrix.length] = randomValue;
 		}
-		newMatrix[getMatrix().length][getMatrix().length] = 0;
+		newMatrix[matrix.length][matrix.length] = 0;
 		
 		this.matrix = newMatrix;
 	}

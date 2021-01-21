@@ -32,6 +32,7 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 		int antibodyTypeCount = parameter.getInteger("antibodyTypeCount");
 		int antibodyMaxAmountPerType = parameter.getInteger("antibodyMaxAmountPerType");
 		int antibodyEquilibriumMaxLength = parameter.getInteger("antibodyEquilibriumMaxLength");
+		double newAntigenPercentage = parameter.getDouble("newAntigenPercentage");
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
 		
 		Grid<Object> grid = gridFactory.createGrid("grid", context, new GridBuilderParameters<Object>(
@@ -45,7 +46,7 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 		context.add(immuneSystem);
 		gridGlobal.moveTo(immuneSystem, gridHeight/2, gridWidth/2);
 		
-		ExternalAgent externalAgent = new ExternalAgent(gridGlobal, antibodyTypeCount);
+		ExternalAgent externalAgent = new ExternalAgent(gridGlobal, antibodyTypeCount, newAntigenPercentage);
 		context.add(externalAgent);
 		
 		IntStream.range(0, antibodyTypeCount).forEach(i -> {

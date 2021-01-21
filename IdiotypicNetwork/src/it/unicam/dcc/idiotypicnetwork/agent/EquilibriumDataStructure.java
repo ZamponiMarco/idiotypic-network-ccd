@@ -32,7 +32,7 @@ public class EquilibriumDataStructure {
 
 	public boolean updateAndGetEquilibrium() {
 		this.equilibrium = equilibriumPredicate.test(lastStateString);
-		return this.isEquilibrium();
+		return this.equilibrium;
 
 	}
 

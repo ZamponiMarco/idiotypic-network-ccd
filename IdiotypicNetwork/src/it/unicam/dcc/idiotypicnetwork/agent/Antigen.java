@@ -12,7 +12,6 @@ public class Antigen {
 	private Grid<Object> grid;
 	private boolean moved;
 	
-	
 	public Antigen (int type, Grid<Object> grid) {
 		
 		this.grid= grid;

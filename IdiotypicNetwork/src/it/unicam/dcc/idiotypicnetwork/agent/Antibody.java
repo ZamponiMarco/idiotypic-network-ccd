@@ -32,9 +32,9 @@ public class Antibody {
 
 		ImmuneSystem immuneSystem = this.getImmuneSystem();
 
-		if (this.isAlive() && !immuneSystem.isGlobalEquilibrium()) {
+		if (this.alive && !immuneSystem.isGlobalEquilibrium()) {
 		
-			this.getAntibodies().forEach(antibody -> antibody.hValue += immuneSystem.getMatrix()[this.getType()][antibody.getType()]);
+			this.getAntibodies().forEach(antibody -> antibody.hValue += immuneSystem.getMatrix()[this.type][antibody.type]);
 			
 		}
 
@@ -50,7 +50,7 @@ public class Antibody {
 				this.alive = true;
 			}
 
-			getEq().addState(this.isAlive() ? "A" : "D");
+			eq.addState(this.alive ? "A" : "D");
 			this.hValue=0;
 		}
 	}

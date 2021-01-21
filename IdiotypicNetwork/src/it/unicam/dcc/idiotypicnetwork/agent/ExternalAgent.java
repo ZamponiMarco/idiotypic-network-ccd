@@ -26,12 +26,12 @@ public class ExternalAgent {
 
 		if (context.getObjectsAsStream(Antigen.class).count() == 0) {
 
-			if (RandomHelper.nextDoubleFromTo(0, 1) < this.newAntigenPercentage) {	
-				context.add(new Antigen(RandomHelper.nextIntFromTo(0, antigenTypeCount - 1),this.grid));
-			} else {
+			if (this.newAntigenPercentage > RandomHelper.nextDoubleFromTo(0, 1)) {	
 				int antigenType = antigenTypeCount;
 				context.add(new Antigen(antigenType, this.grid));
 				antigenTypeCount++;
+			} else {
+				context.add(new Antigen(RandomHelper.nextIntFromTo(0, antigenTypeCount - 1),this.grid));
 			}
 
 		}

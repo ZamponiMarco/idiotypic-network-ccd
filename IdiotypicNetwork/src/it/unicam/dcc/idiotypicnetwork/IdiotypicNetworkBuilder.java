@@ -42,7 +42,7 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 		Grid<Object> gridGlobal = gridFactory.createGrid("gridGlobal", context, new GridBuilderParameters<Object>(
 				new WrapAroundBorders(), new RandomGridAdder<Object>(), true, 41, 41));
 		
-		ImmuneSystem immuneSystem = new ImmuneSystem(antibodyTypeCount, antibodyEquilibriumMaxLength);
+		ImmuneSystem immuneSystem = new ImmuneSystem(antibodyTypeCount, antibodyEquilibriumMaxLength, antibodyMaxAmountPerType);
 		context.add(immuneSystem);
 		gridGlobal.moveTo(immuneSystem, gridHeight/2, gridWidth/2);
 		

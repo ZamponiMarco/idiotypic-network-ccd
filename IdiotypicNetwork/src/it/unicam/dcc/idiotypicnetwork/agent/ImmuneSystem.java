@@ -3,6 +3,7 @@ package it.unicam.dcc.idiotypicnetwork.agent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import cern.jet.random.Uniform;
@@ -20,10 +21,12 @@ public class ImmuneSystem {
 	private boolean isInfected;
 	private int maxEquilibriumStateLength;
 	
+	private int antibodyMaxAmountPerType;
+	
 	private List<Integer> infectionTimes;
 	private int currentInfectionTime;
 
-	public ImmuneSystem(int antibodyTypeCount, int maxEquilibriumStateLength) {
+	public ImmuneSystem(int antibodyTypeCount, int maxEquilibriumStateLength, int antibodyMaxAmountPerType) {
 		this.globalEquilibrium = false;
 		
 		Uniform uniform = RandomHelper.createUniform(-1, 1);
@@ -40,6 +43,7 @@ public class ImmuneSystem {
 		
 		this.isInfected = false;
 		this.maxEquilibriumStateLength = maxEquilibriumStateLength;
+		this.antibodyMaxAmountPerType = antibodyMaxAmountPerType;
 		
 		this.infectionTimes = new ArrayList<>();
 		this.currentInfectionTime = 0;
@@ -66,11 +70,15 @@ public class ImmuneSystem {
 		this.currentInfectionTime = 0;
 
 		Antigen antigen = this.getAntigen();
-		if (antigen != null && antigen.getType() < this.matrix.length) {
+		if (antigen != null && antigen.getType() >= this.matrix.length) {
 			Context<Antibody> context = ContextUtils.getContext(this);
 
 			this.addNewAntibodyToMatrix();
-			context.add(new Antibody(antigen.getType(), this.maxEquilibriumStateLength));
+			
+			int typeAmount = RandomHelper.nextIntFromTo(1, antibodyMaxAmountPerType);
+			for (int i = 0; i < typeAmount; i++) {			
+				context.add(new Antibody(antigen.getType(), this.maxEquilibriumStateLength));
+			}
 		}
 
 	}

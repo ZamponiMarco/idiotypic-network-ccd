@@ -1,7 +1,9 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork.visualization;
 
 import java.awt.Color;
 
+import it.unicam.dcc.idiotypicnetwork.agent.Antibody;
+import it.unicam.dcc.idiotypicnetwork.agent.Antigen;
 import repast.simphony.visualizationOGL2D.DefaultStyleOGL2D;
 import saf.v3d.scene.VSpatial;
 
@@ -12,15 +14,15 @@ public class MoleculaStyle2D extends DefaultStyleOGL2D {
 
 		if (agent instanceof Antibody) {
 
-			if (!((Antibody) agent).alive) {
+			if (!((Antibody) agent).isAlive()) {
 				return Color.WHITE;
 			} else {
-				return ColorTypeMapping.getInstance().getColor(((Antibody) agent).type);
+				return ColorTypeMapping.getInstance().getColor(((Antibody) agent).getType());
 			}
 		}
 
 		if (agent instanceof Antigen) {
-			return ColorTypeMapping.getInstance().getColor(((Antigen) agent).type);
+			return ColorTypeMapping.getInstance().getColor(((Antigen) agent).getType());
 		}
 		
 		
@@ -32,7 +34,7 @@ public class MoleculaStyle2D extends DefaultStyleOGL2D {
 	public Color getBorderColor(Object agent) {
 		if (agent instanceof Antibody) {
 
-			if (((Antibody) agent).eq.isEquilibrium()) {
+			if (((Antibody) agent).getEq().updateAndGetEquilibrium()) {
 				return Color.GREEN;
 			}else {
 				return Color.WHITE;
@@ -45,7 +47,7 @@ public class MoleculaStyle2D extends DefaultStyleOGL2D {
 	public int getBorderSize(Object agent) {
 		if (agent instanceof Antibody) {
 
-			if (((Antibody) agent).eq.equilibrium == true) {
+			if (((Antibody) agent).getEq().isEquilibrium() == true) {
 				return 2;
 			}else {
 				return 0;

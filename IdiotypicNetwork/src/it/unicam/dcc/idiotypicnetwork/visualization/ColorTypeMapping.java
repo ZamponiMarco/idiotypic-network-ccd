@@ -1,4 +1,4 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork.visualization;
 
 import java.awt.Color;
 import java.util.HashMap;

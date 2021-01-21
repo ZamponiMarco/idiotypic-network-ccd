@@ -1,13 +1,13 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork.agent;
 
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 public class EquilibriumDataStructure {
 	
-	String lastStateString;
-	int maxLength;
-	boolean equilibrium;
+	private String lastStateString;
+	private int maxLength;
+	private boolean equilibrium;
 	
 	private Predicate<String> equilibriumPredicate;
 
@@ -30,13 +30,17 @@ public class EquilibriumDataStructure {
 		}
 	}
 
-	public boolean isEquilibrium() {
+	public boolean updateAndGetEquilibrium() {
 		this.equilibrium = equilibriumPredicate.test(lastStateString);
-		return this.equilibrium;
+		return this.isEquilibrium();
 
 	}
 
 	public void reset() {
 		this.lastStateString = "";
+	}
+
+	public boolean isEquilibrium() {
+		return equilibrium;
 	}
 }

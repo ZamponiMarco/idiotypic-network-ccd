@@ -1,4 +1,4 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork.agent;
 
 import repast.simphony.context.Context;
 import repast.simphony.engine.watcher.Watch;
@@ -9,16 +9,16 @@ import repast.simphony.util.ContextUtils;
 
 public class ExternalAgent {
 
-	public int antigenTypeCount;
-	public Grid<Object> grid;
-	public double newAntigenPercentage;
+	private int antigenTypeCount;
+	private Grid<Object> grid;
+	private double newAntigenPercentage;
 
 	public ExternalAgent(Grid<Object> grid, int antigenTypeCount) {
 		this.grid = grid;
 		this.antigenTypeCount = antigenTypeCount;
 	}
 
-	@Watch(watcheeClassName = "idiotypicNetwork.ImmuneSystem", watcheeFieldNames = "globalEquilibrium", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
+	@Watch(watcheeClassName = "it.unicam.dcc.idiotypicnetwork.agent.ImmuneSystem", watcheeFieldNames = "globalEquilibrium", whenToTrigger = WatcherTriggerSchedule.IMMEDIATE)
 	public void createAntigen() {
 
 		Context<Antigen> context = ContextUtils.getContext(this);

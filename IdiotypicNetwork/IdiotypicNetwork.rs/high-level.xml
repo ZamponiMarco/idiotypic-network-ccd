@@ -3,22 +3,22 @@
   <type>2D</type>
   <styles>
     <entry>
-      <string>idiotypicNetwork.Antigen</string>
-      <string>idiotypicNetwork.MoleculaStyle2D</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.Antigen</string>
+      <string>it.unicam.dcc.idiotypicnetwork.visualization.MoleculaStyle2D</string>
     </entry>
     <entry>
-      <string>idiotypicNetwork.ImmuneSystem</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.ImmuneSystem</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
-      <string>idiotypicNetwork.Antigen</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.Antigen</string>
       <null/>
     </entry>
     <entry>
-      <string>idiotypicNetwork.ImmuneSystem</string>
-      <string>idiotypicNetwork.ImmuneSystem.style_1.xml</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.ImmuneSystem</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.ImmuneSystem.style_1.xml</string>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -38,11 +38,11 @@
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>idiotypicNetwork.Antigen</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.Antigen</string>
       <int>1</int>
     </entry>
     <entry>
-      <string>idiotypicNetwork.ImmuneSystem</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.ImmuneSystem</string>
       <int>0</int>
     </entry>
   </layerOrder>

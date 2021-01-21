@@ -1,4 +1,4 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork.agent;
 
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
@@ -8,9 +8,9 @@ import repast.simphony.util.ContextUtils;
 
 public class Antigen {
 
-	int type;
-	public Grid<Object> grid;
-	boolean moved;
+	private int type;
+	private Grid<Object> grid;
+	private boolean moved;
 	
 	
 	public Antigen (int type, Grid<Object> grid) {
@@ -24,7 +24,7 @@ public class Antigen {
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
 		ImmuneSystem immuneSystem = this.getImmuneSystem();
-		if(immuneSystem.globalEquilibrium) {
+		if(immuneSystem.isGlobalEquilibrium()) {
 			
 			GridPoint myPoint = grid.getLocation(this);
 			GridPoint isPoint = grid.getLocation(immuneSystem);
@@ -44,6 +44,10 @@ public class Antigen {
 	private ImmuneSystem getImmuneSystem() {
 		Context<ImmuneSystem> context = ContextUtils.getContext(this);
 		return context.getObjects(ImmuneSystem.class).get(0);
+	}
+
+	public int getType() {
+		return type;
 	}
 	
 }

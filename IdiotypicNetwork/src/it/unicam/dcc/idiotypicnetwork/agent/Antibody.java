@@ -1,12 +1,10 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork.agent;
 
 import java.util.stream.Stream;
 
 import repast.simphony.context.Context;
-import repast.simphony.engine.controller.Controller;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.util.ContextUtils;
-import repast.simphony.visualization.editor.SpaceAddHandler;
 
 /* 
  * Classe astratta che rappresenta un anticorpo. 
@@ -16,10 +14,10 @@ import repast.simphony.visualization.editor.SpaceAddHandler;
  * */
 public class Antibody {
 
-	public boolean alive;
-	public int type;
-	public double hValue;
-	public EquilibriumDataStructure eq;
+	private boolean alive;
+	private int type;
+	private double hValue;
+	private EquilibriumDataStructure eq;
 
 	public Antibody( int type, int maxEquilibriumStateLength) {
 		this.type = type;
@@ -34,9 +32,9 @@ public class Antibody {
 
 		ImmuneSystem immuneSystem = this.getImmuneSystem();
 
-		if (this.alive && !immuneSystem.globalEquilibrium) {
+		if (this.isAlive() && !immuneSystem.isGlobalEquilibrium()) {
 		
-			this.getAntibodies().forEach(antibody -> antibody.hValue += immuneSystem.matrix[this.type][antibody.type]);
+			this.getAntibodies().forEach(antibody -> antibody.hValue += immuneSystem.getMatrix()[this.getType()][antibody.getType()]);
 			
 		}
 
@@ -45,14 +43,14 @@ public class Antibody {
 	// The cell can die or revive
 	@ScheduledMethod(start = 2, interval = 2, priority = 1)
 	public void changeStatus() {
-		if (!this.getImmuneSystem().globalEquilibrium) {
+		if (!this.getImmuneSystem().isGlobalEquilibrium()) {
 			if (this.hValue < 0) {
 				this.alive = false;
 			} else {
 				this.alive = true;
 			}
 
-			eq.addState(this.alive ? "A" : "D");
+			getEq().addState(this.isAlive() ? "A" : "D");
 			this.hValue=0;
 		}
 	}
@@ -66,6 +64,18 @@ public class Antibody {
 		Context<Antibody> context = ContextUtils.getContext(this);
 		return context.getObjectsAsStream(Antibody.class);
 
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public EquilibriumDataStructure getEq() {
+		return eq;
+	}
+
+	public boolean isAlive() {
+		return alive;
 	}
 
 }

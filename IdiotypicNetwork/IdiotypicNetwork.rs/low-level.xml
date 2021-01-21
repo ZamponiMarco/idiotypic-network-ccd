@@ -3,13 +3,13 @@
   <type>2D</type>
   <styles>
     <entry>
-      <string>idiotypicNetwork.Antibody</string>
-      <string>idiotypicNetwork.MoleculaStyle2D</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.Antibody</string>
+      <string>it.unicam.dcc.idiotypicnetwork.visualization.MoleculaStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
-      <string>idiotypicNetwork.Antibody</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.Antibody</string>
       <null/>
     </entry>
   </editedStyles>
@@ -30,7 +30,7 @@
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>idiotypicNetwork.Antibody</string>
+      <string>it.unicam.dcc.idiotypicnetwork.agent.Antibody</string>
       <int>0</int>
     </entry>
   </layerOrder>

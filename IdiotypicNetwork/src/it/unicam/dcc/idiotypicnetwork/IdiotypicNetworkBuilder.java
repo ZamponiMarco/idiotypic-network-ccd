@@ -1,8 +1,12 @@
-package idiotypicNetwork;
+package it.unicam.dcc.idiotypicnetwork;
 
 
 import java.util.stream.IntStream;
 
+import it.unicam.dcc.idiotypicnetwork.agent.Antibody;
+import it.unicam.dcc.idiotypicnetwork.agent.ExternalAgent;
+import it.unicam.dcc.idiotypicnetwork.agent.ImmuneSystem;
+import it.unicam.dcc.idiotypicnetwork.visualization.ColorTypeMapping;
 import repast.simphony.context.Context;
 import repast.simphony.context.space.grid.GridFactory;
 import repast.simphony.context.space.grid.GridFactoryFinder;
@@ -49,7 +53,7 @@ public class IdiotypicNetworkBuilder implements ContextBuilder<Object> {
 			IntStream.range(0, typeAmount).forEach(n -> {
 				Antibody antibody = new Antibody(i, antibodyEquilibriumMaxLength);
 				context.add(antibody);
-				ColorTypeMapping.getInstance().getColor(antibody.type);
+				ColorTypeMapping.getInstance().getColor(antibody.getType());
 			});
 		});
 

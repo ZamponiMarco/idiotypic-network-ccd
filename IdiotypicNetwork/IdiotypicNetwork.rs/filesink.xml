@@ -1,0 +1,14 @@
+<repast.simphony.data2.engine.FileSinkDescriptor simphonyVersion="2.8.0">
+  <name>Antigen Type Count File Sink</name>
+  <dataSet>Antigen Type Count Dataset</dataSet>
+  <delimiter>,</delimiter>
+  <format>TABULAR</format>
+  <sourceIds class="linked-hash-set">
+    <string>tick</string>
+    <string>AntigenTypeCount</string>
+    <string>IsInfected</string>
+    <string>AverageInfectionTime</string>
+  </sourceIds>
+  <fileName>data/antigen_type_count.csv</fileName>
+  <addTimeStamp>true</addTimeStamp>
+</repast.simphony.data2.engine.FileSinkDescriptor>

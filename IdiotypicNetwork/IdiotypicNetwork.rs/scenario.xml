@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Scenario simphonyVersion="2.8.0">
-    <repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="IdiotypicNetwork" file="idiotypic-network-builder.xml" />
-    <repast.simphony.action.display context="IdiotypicNetwork" file="low-level.xml" />
-    <repast.simphony.action.display context="IdiotypicNetwork" file="high-level.xml" />
+<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="IdiotypicNetwork" file="idiotypic-network-builder.xml" />
+<repast.simphony.action.data_set context="IdiotypicNetwork" file="dataset.xml" />
+<repast.simphony.action.file_sink context="IdiotypicNetwork" file="filesink.xml" />
+<repast.simphony.action.display context="IdiotypicNetwork" file="low-level.xml" />
+<repast.simphony.action.display context="IdiotypicNetwork" file="high-level.xml" />
 </Scenario>
